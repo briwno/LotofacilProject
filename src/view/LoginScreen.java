@@ -31,12 +31,12 @@ public class LoginScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-                // Aqui você deve verificar o login no banco de dados
+                
                 if (username.equals("admin") && password.equals("admin")) {
-                    // Abrir tela de administrador
+                    
                     JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
                 } else {
-                    // Abrir tela de usuário
+                    
                     JOptionPane.showMessageDialog(null, "Login de usuário bem-sucedido!");
                 }
             }
@@ -45,7 +45,7 @@ public class LoginScreen extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
-                // Abrir tela de cadastro
+                
                 JOptionPane.showMessageDialog(null, "Abrir tela de cadastro!");
             }
         });
