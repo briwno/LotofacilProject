@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginScreen extends JFrame {
-    public LoginScreen() {
+public class LoginTela extends JFrame {
+    public LoginTela() {
         setTitle("Lotofácil - Login");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,10 +29,10 @@ public class LoginScreen extends JFrame {
         loginButton.addActionListener(new ActionListener() {
            
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
+                String user = usernameField.getText();
+                String senha = new String(passwordField.getPassword());
                 
-                if (username.equals("admin") && password.equals("admin")) {
+                if (user.equals("admin") && senha.equals("admin")) {
                     
                     JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
                 } else {
@@ -45,8 +45,7 @@ public class LoginScreen extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
-                
-                JOptionPane.showMessageDialog(null, "Abrir tela de cadastro!");
+                new RegistrarTela().setVisible(true);
             }
         });
     }
