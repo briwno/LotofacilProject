@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Salvar {
-    private static final String FILE_PATH = "src/db/contas.txt";
+    private static final String CAMINHO_ARQUIVO = "src/db/contas.txt";
 
     public static void salvar(Usuario usuario) {
-        try (FileWriter fileWriter = new FileWriter(FILE_PATH, true);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                PrintWriter printWriter = new PrintWriter(bufferedWriter)) {
-            printWriter.println(usuario);
+        try (FileWriter escritorArquivo = new FileWriter(CAMINHO_ARQUIVO, true);
+                BufferedWriter escritorBuffer = new BufferedWriter(escritorArquivo);
+                PrintWriter escritorImpressao = new PrintWriter(escritorBuffer)) {
+            escritorImpressao.println(usuario);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -18,18 +18,17 @@ public class Salvar {
 
     public static List<Usuario> carregar() {
         List<Usuario> usuarios = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(FILE_PATH);
-                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String user = parts[0];
-                String senha = parts[1];
-                usuarios.add(new Usuario(user, senha));
+        try (FileReader leitorArquivo = new FileReader(CAMINHO_ARQUIVO);
+                BufferedReader leitorBuffer = new BufferedReader(leitorArquivo)) {
+            String linha;
+            while ((linha = leitorBuffer.readLine()) != null) {
+                String[] partes = linha.split(",");
+                String nomeUsuario = partes[0];
+                String senha = partes[1];
+                usuarios.add(new Usuario(nomeUsuario, senha));
             }
         } catch (IOException e) {
             e.printStackTrace();
-
         }
         return usuarios;
     }
