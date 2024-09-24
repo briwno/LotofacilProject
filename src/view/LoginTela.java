@@ -1,5 +1,9 @@
 package view;
 
+import model.Usuario;
+import model.Salvar;
+
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +14,14 @@ public class LoginTela extends JFrame {
         setTitle("Lotofácil - Login");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(3, 2));
+        setLayout(new GridLayout(4, 2));
+
+        JLabel imagem = new JLabel();
+        imagem.setIcon(new ImageIcon("src/lib/lotofacil.jpg"));
+        imagem.setHorizontalAlignment(SwingConstants.CENTER);
+        add(imagem);
+
+        add(new JLabel("Faça login para continuar:"));
 
         add(new JLabel("Usuário:"));
         JTextField usernameField = new JTextField();
@@ -35,12 +46,27 @@ public class LoginTela extends JFrame {
                 if (user.equals("admin") && senha.equals("admin")) {
                     
                     JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
-                } else {
+                    dispose();
+                    new AdminTela().setVisible(true);
                     
-                    JOptionPane.showMessageDialog(null, "Login de usuário bem-sucedido!");
-                }
+                } else {
+                    List<Usuario> usuarios = Salvar.carregar();
+                    boolean achou = false;
+                    for (Usuario usuario : usuarios) {
+                        if (usuario.getUser().equals(user) && usuario.getSenha().equals(senha)) {
+                            achou = true;
+                            JOptionPane.showMessageDialog(null, "Login de apostador bem-sucedido!");
+                            dispose();
+                            new ApostadorTela().setVisible(true);
+                            break;
+                        }
+                    }
+                    if (!achou) {
+                        JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
+                    }
             }
-        });
+        }
+    });
 
         registerButton.addActionListener(new ActionListener() {
             
@@ -50,3 +76,4 @@ public class LoginTela extends JFrame {
         });
     }
 }
+  

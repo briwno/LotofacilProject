@@ -1,5 +1,8 @@
 package view;
 
+import model.Usuario;
+import model.Salvar;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -41,6 +44,8 @@ public class RegistrarTela extends JFrame {
                     return;
                 }
 
+                Usuario usuario = new Usuario(user, senha);
+                Salvar.salvar(usuario);
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
                 dispose();
             }
