@@ -19,9 +19,19 @@ public class AdminTela extends JFrame{
         JButton visualizarConcursos = new JButton("Visualizar Concursos");
         add(visualizarConcursos);
 
-        //Gerar os números do sorteio do concurso de forma automática ou manual;
-        JButton gerarNumeros = new JButton("Gerar Números");
-        add(gerarNumeros);
+        cadastrarConcurso.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new CadastrarConcursoTela().setVisible(true);
+            }
+        });
+
+        visualizarConcursos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new VisualizarConcursosTela().setVisible(true);
+            }
+        });
 
 
     }

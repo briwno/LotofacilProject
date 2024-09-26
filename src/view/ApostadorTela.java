@@ -36,6 +36,8 @@ public class ApostadorTela  extends JFrame{
             }
         });
 
+        
+
 
 
 

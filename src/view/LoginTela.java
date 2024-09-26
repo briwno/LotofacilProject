@@ -14,14 +14,10 @@ public class LoginTela extends JFrame {
         setTitle("Lotofácil - Login");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(4, 2));
-
-        JLabel imagem = new JLabel();
-        imagem.setIcon(new ImageIcon("src/lib/lotofacil.jpg"));
-        imagem.setHorizontalAlignment(SwingConstants.CENTER);
-        add(imagem);
+        setLayout(new GridLayout(5, 3));
 
         add(new JLabel("Faça login para continuar:"));
+        add(new JLabel());
 
         add(new JLabel("Usuário:"));
         JTextField usernameField = new JTextField();
@@ -36,6 +32,12 @@ public class LoginTela extends JFrame {
 
         JButton registerButton = new JButton("Cadastrar");
         add(registerButton);
+
+        JButton entrarAdminButton = new JButton("Entrar como administrador");
+        add(entrarAdminButton);
+
+        JButton entraApostador = new JButton("Entrar como apostador");
+        add(entraApostador);
 
         loginButton.addActionListener(new ActionListener() {
            
@@ -74,6 +76,26 @@ public class LoginTela extends JFrame {
                 new RegistrarTela().setVisible(true);
             }
         });
+
+
+        entrarAdminButton.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new AdminTela().setVisible(true);
+            }
+        });
+
+        entraApostador.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new ApostadorTela().setVisible(true);
+            }
+        });
     }
+
+
+    
 }
   
