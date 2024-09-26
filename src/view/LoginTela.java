@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginTela extends JFrame {
+
     public LoginTela() {
         setTitle("Lotofácil - Login");
         setSize(400, 300);
@@ -40,46 +41,48 @@ public class LoginTela extends JFrame {
         add(entraApostador);
 
         loginButton.addActionListener(new ActionListener() {
-           
+
             public void actionPerformed(ActionEvent e) {
-                String user = usernameField.getText();
+                String user = new String(usernameField.getText());
                 String senha = new String(passwordField.getPassword());
-                
+
                 if (user.equals("admin") && senha.equals("admin")) {
-                    
+
                     JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
                     dispose();
                     new AdminTela().setVisible(true);
-                    
+
                 } else {
                     List<Usuario> usuarios = Salvar.carregar();
                     boolean achou = false;
                     for (Usuario usuario : usuarios) {
                         if (usuario.getUser().equals(user) && usuario.getSenha().equals(senha)) {
                             achou = true;
+
+                            String usuarioLogado = usuario.getNome();
+
                             JOptionPane.showMessageDialog(null, "Login de apostador bem-sucedido!");
                             dispose();
-                            new ApostadorTela().setVisible(true);
+                            new ApostadorTela(usuarioLogado).setVisible(true);
                             break;
                         }
                     }
                     if (!achou) {
                         JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
                     }
+                }
             }
-        }
-    });
+        });
 
         registerButton.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 new RegistrarTela().setVisible(true);
             }
         });
 
-
         entrarAdminButton.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new AdminTela().setVisible(true);
@@ -87,15 +90,12 @@ public class LoginTela extends JFrame {
         });
 
         entraApostador.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new ApostadorTela().setVisible(true);
+                new ApostadorTela("Apostador").setVisible(true);
             }
         });
     }
 
-
-    
 }
-  

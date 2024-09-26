@@ -10,7 +10,7 @@ import view.CadastrarConcursoTela;
 public class VisualizarConcursosTela extends JFrame {
     public VisualizarConcursosTela() {
         setTitle("Visualizar Concursos");
-        setSize(400, 300);
+        setSize(900, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(4, 2));
 
@@ -35,21 +35,37 @@ public class VisualizarConcursosTela extends JFrame {
             return;
         }
 
-        Concurso ultimoConcurso = concursos.get(concursos.size() - 1);
-        JLabel concursoLabel = new JLabel("Concurso: " + ultimoConcurso.getConcurso());
-        JLabel dataLabel = new JLabel("Data e hora do Sorteio: " + ultimoConcurso.getData());
+        Concurso concurso = concursos.get(concursos.size() - 1);
+        JLabel concursoLabel = new JLabel("Concurso: " + concurso.getConcurso());
+        JLabel dataLabel = new JLabel("Data: " + concurso.getData());
+        JLabel numerosLabel = new JLabel("Números sorteados: " + getNumerosSorteados());
+        JButton gerarNumerosButton = new JButton("Gerar Números");
 
-        add(concursoLabel);
-        add(dataLabel);
 
-        revalidate();
-        repaint();
+
+        JFrame detalhesConcursoFrame = new JFrame("Detalhes do Concurso Ativo");
+        detalhesConcursoFrame.setSize(800, 200);
+        detalhesConcursoFrame.setLayout(new GridLayout(2, 1));
+        detalhesConcursoFrame.add(concursoLabel);
+        detalhesConcursoFrame.add(dataLabel);
+        detalhesConcursoFrame.add(gerarNumerosButton);
+        detalhesConcursoFrame.add(numerosLabel);
+        detalhesConcursoFrame.setVisible(true);
+
+
+        gerarNumerosButton.addActionListener(e -> {
+            String novosNumeros = getNumerosSorteados();
+            numerosLabel.setText("Números sorteados: " + novosNumeros);
+        });
+        
+
+        
+
+        
     }
 
-    private void verConcursosAnteriores() {
-    }
-
-    private void gerarNumeros() {
+    private String getNumerosSorteados() {
+        
         List<Integer> numeros = new ArrayList<>();
         for (int i = 1; i <= 25; i++) {
             numeros.add(i);
@@ -62,7 +78,14 @@ public class VisualizarConcursosTela extends JFrame {
             numeros.remove(index);
         }
 
-        JOptionPane.showMessageDialog(this, "Números sorteados: " + numerosSorteados);
+        return numerosSorteados.toString();
     }
+
+
+    private void verConcursosAnteriores() {
+    }
+
+
+    
 
 }

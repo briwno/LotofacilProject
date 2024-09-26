@@ -23,9 +23,10 @@ public class Salvar {
             String linha;
             while ((linha = leitorBuffer.readLine()) != null) {
                 String[] partes = linha.split(",");
-                String nomeUsuario = partes[0];
-                String senha = partes[1];
-                usuarios.add(new Usuario(nomeUsuario, senha));
+                String nome = partes[0];
+                String usuario = partes[1];
+                String senha = partes[2];
+                usuarios.add(new Usuario(nome, usuario, senha));
             }
         } catch (IOException e) {
             e.printStackTrace();

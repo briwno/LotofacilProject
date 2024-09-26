@@ -13,7 +13,11 @@ public class RegistrarTela extends JFrame {
         setTitle("Lotofácil - Cadastro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
+
+        add(new JLabel("Como Deseja ser chamado?"));
+        JTextField nomeField = new JTextField();
+        add(nomeField);
 
         add(new JLabel("Usuário:"));
         JTextField usernameField = new JTextField();
@@ -35,6 +39,7 @@ public class RegistrarTela extends JFrame {
 
         registrarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String nome = nomeField.getText();
                 String user = usernameField.getText();
                 String senha = new String(passwordField.getPassword());
                 String confirmSenha = new String(confirmPasswordField.getPassword());
@@ -44,7 +49,7 @@ public class RegistrarTela extends JFrame {
                     return;
                 }
 
-                Usuario usuario = new Usuario(user, senha);
+                Usuario usuario = new Usuario(nome, user, senha);
                 Salvar.salvar(usuario);
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
                 dispose();

@@ -1,12 +1,18 @@
 package model;
 
 public class Usuario {
+    private String nome;
     private String user;
     private String senha;
 
-    public Usuario(String user, String senha) {
+    public Usuario(String nome, String user, String senha) {
+        this.nome = nome;
         this.user = user;
         this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public String getUser() {
@@ -18,7 +24,7 @@ public class Usuario {
     }
 
     public String toString() {
-        return user + "," + senha;
+        return nome + "," + user + "," + senha;
     }
     
 }
