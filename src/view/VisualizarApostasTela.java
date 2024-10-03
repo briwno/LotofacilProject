@@ -5,5 +5,4 @@ import java.awt.*;
 
 public class VisualizarApostasTela extends JFrame{
     
-
 }

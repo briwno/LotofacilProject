@@ -37,14 +37,16 @@ public class ApostadorTela extends JFrame{
         JButton visualizarApostas = new JButton("Visualizar Apostas");
         add(visualizarApostas);
 
+        JButton apostar = new JButton("Aposte nos concursos ativos");
+        add(apostar);
+
         JButton dadosApostador = new JButton("Seus Dados");
         add(dadosApostador);
 
 
-        visualizarApostas.addActionListener(new ActionListener() {
+        apostar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new VisualizarApostasTela().setVisible(true);
+                new RealizarApostaTela().setVisible(true);
             }
         });
 
