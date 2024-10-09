@@ -50,6 +50,12 @@ public class ApostadorTela extends JFrame{
             }
         });
 
+        visualizarApostas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new VisualizarApostasTela().setVisible(true);
+            }
+        });
+
         
 
 

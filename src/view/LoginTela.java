@@ -96,6 +96,7 @@ public class LoginTela extends JFrame {
                 new ApostadorTela("Apostador").setVisible(true);
             }
         });
-    }
 
+
+}
 }

@@ -56,16 +56,17 @@ public class RealizarApostaTela extends JFrame {
             }
             JOptionPane.showMessageDialog(escolherNumerosTela, numerosEscolhidos.toString());
             escolherNumerosTela.dispose();
+            String apostador = JOptionPane.showInputDialog("Digite seu nome: ");
             JOptionPane.showMessageDialog(escolherNumerosTela, "Aposta realizada com sucesso!");
-            salvarAposta(concursoString, numerosEscolhidos.toString());
+            salvarAposta(apostador, concursoString, numerosEscolhidos.toString());
         });
 
         escolherNumerosTela.setVisible(true);
     }
 
-    public void salvarAposta(String concurso, String numeros) {
+    public void salvarAposta(String apostador,String concurso, String numeros) {
         try(FileWriter apostar = new FileWriter("src\\db\\apostas.txt", true)) {
-            apostar.write(concurso + " - " + numeros + "\n");
+            apostar.write(apostador + "," + concurso + "," + numeros + "\n");
         } catch (Exception e) {
             e.printStackTrace();
     }
