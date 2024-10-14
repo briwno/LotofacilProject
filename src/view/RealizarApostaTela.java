@@ -48,7 +48,7 @@ public class RealizarApostaTela extends JFrame {
         escolherNumerosTela.add(confirmar);
 
         confirmar.addActionListener(event -> {
-            StringBuilder numerosEscolhidos = new StringBuilder("Números escolhidos: ");
+            StringBuilder numerosEscolhidos = new StringBuilder("");
             for (JCheckBox numero : numeros) {
                 if (numero.isSelected()) {
                     numerosEscolhidos.append(numero.getText()).append(" ");

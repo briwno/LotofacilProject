@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.FilterReader;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CadastrarConcursoTela extends JFrame {
@@ -65,19 +66,21 @@ public class CadastrarConcursoTela extends JFrame {
     private void cadastrarConcurso() {
         String concurso = concursoField.getText();
         String data = dataField.getText();
-        String numeros = numerosField.getText();
+        String[] numerosArray = numerosField.getText().split(" ");
+        Arrays.sort(numerosArray, (a, b) -> Integer.compare(Integer.parseInt(a), Integer.parseInt(b)));
+        StringBuilder numeros = new StringBuilder();
+        for (String numero : numerosArray) {
+            numeros.append(numero).append(" ");
+        }
 
-        if (concurso.isBlank() || data.isBlank()) {
+        if (concurso.isBlank() || data.isBlank() || numeros.toString().isBlank()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        concursos.add(new Concurso(concurso, data, numeros));
+        concursos.add(new Concurso(concurso, data, numeros.toString().trim()));
         JOptionPane.showMessageDialog(this, "Concurso cadastrado com sucesso", "Sucesso",
                 JOptionPane.INFORMATION_MESSAGE);
-        concursoField.setText("");
-        dataField.setText("");
-        numerosField.setText("");
         salvarConcursos();
 
         dispose();
